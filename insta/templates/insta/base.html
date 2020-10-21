@@ -43,10 +43,10 @@
         <div class="footer">
           <div class="footer_contents">
             <div class="navbar navbar-default">
-              <a class="nav-item nav-link" href="{% url 'insta-home' %}"><img src="/media/nav_buttons/home.svg" height="30" width="30"></a>
+              <a class="nav-item nav-link" href="{% url 'insta-home' %}"><img src="{% static "media/nav_buttons/home.svg" %}" height="30" width="30"></a>
               <!-- Dropup button -->
               <div class="btn-group dropup">
-                <button type="button" class="white-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/media/nav_buttons/search.png" height="30" width="30"></button>
+                <button type="button" class="white-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static "media/nav_buttons/search.png" %}" height="30" width="30"></button>
                 <div class="dropdown-menu">
                   <form method="GET" action="{% url 'search' %}">
                     <input type="text" placeholder="Search" name="q" value="{{ request.GET.q }}">
