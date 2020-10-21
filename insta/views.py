@@ -141,6 +141,7 @@ class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 # This view creates a REST API. Everytime the REST API is accessed through a
 # jQuery button, the authenticated user is added/removed from the list of users
 # who have liked the post.
+
 class LikePostAPI(APIView):
     authentication_classes = (authentication.SessionAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
