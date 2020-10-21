@@ -1,5 +1,6 @@
 {% extends "insta/base.html" %}
 {% block content %}
+{% load static %}
 
 <script type="text/javascript">
   window.USER_LIKE_URL = "{% url 'insta-post_like_api' post.id %}";
@@ -17,11 +18,11 @@
         </div>
         <img class="img-fluid img-thumbnail" src="{{ post.photo.url }}">
         {% if user in post.likes.all %}
-          <a id=imageElement{{post.id}}  onclick="toggleLike({{post.id}})"><img src="/media/nav_buttons/liked.svg" height="17" width="17"></a>
+          <a id=imageElement{{post.id}}  onclick="toggleLike({{post.id}})"><img src="{% static "media/nav_buttons/liked.svg" %}" height="17" width="17"></a>
         {% else %}
-          <a id=imageElement{{post.id}}  onclick="toggleLike({{post.id}})"><img src="/media/nav_buttons/unliked.svg" height="17" width="17"></a>
+          <a id=imageElement{{post.id}}  onclick="toggleLike({{post.id}})"><img src="{% static "media/nav_buttons/unliked.svg" %}" height="17" width="17"></a>
         {% endif %}
-        <a href="{% url 'insta-comment' post.id %}"><img src="/media/nav_buttons/comment.svg" height="17" width="17"></a></br>
+        <a href="{% url 'insta-comment' post.id %}"><img src="{% static "media/nav_buttons/comment.svg" %} height="17" width="17"></a></br>
         {% if post.likes.count != 0 %}
           <a id=likeCount{{post.id}} class="black-link-plain mb-3" href="{% url 'insta-post_likes' post.id %}">{{post.likes.count}} likes</a>
         {% endif %}
@@ -37,7 +38,7 @@
           <a class="black-link" href="{% url 'insta-profile' comment.author.username %}">{{ comment.author }}</a>
           {{ comment.text }}
           {% if comment.author == user %}
-            <a href="{% url 'insta-delete_comment' comment.id %}"><img src="/media/nav_buttons/trash.png" height="20" width="20"></a>
+            <a href="{% url 'insta-delete_comment' comment.id %}"><img src="{% static "media/nav_buttons/trash.png" %}" height="20" width="20"></a>
           {% endif %}
           </br><small>{{ comment.date_posted|date:'F d, Y' }}</small>
         </p>
