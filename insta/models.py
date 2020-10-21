@@ -36,7 +36,7 @@ class Post(models.Model):
     def save(self, **kwargs):
         super().save()
 
-        img = Image.open(self.photo.path)
+        img = Image.open(self.photo.name)
         exif = img._getexif()
         orientation_key = 274
         if exif and orientation_key in exif:

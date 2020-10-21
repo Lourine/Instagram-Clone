@@ -20,7 +20,7 @@ class Profile(models.Model):
     def save(self, **kwargs):
         super().save()
 
-        img = Image.open(self.image.path)
+        img = Image.open(self.image.name)
         exif = img._getexif()
         orientation_key = 274
         if exif and orientation_key in exif:
@@ -37,4 +37,4 @@ class Profile(models.Model):
 
         output_size = (200, 200)
         img.thumbnail(output_size)
-        img.save(self.image.path)
+        img.save(self.image.name)
