@@ -22,8 +22,8 @@
 
   <body>
     <nav class="navbar navbar-light bg-dark sticky-top">
-      <a href="{% url 'insta-home' %}"><img class="navbar-brand" height = "48" src="/media/logo.png"></a>
-     
+      <a href="{% url 'insta-home' %}"><img class="navbar-brand" height = "48" src="{% static "media/logo.png" %}" alt="Logo"></a>
+      
     </nav>
     <div class="content mt-3">
       {% if messages %}
