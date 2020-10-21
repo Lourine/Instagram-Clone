@@ -1,0 +1,18 @@
+{% extends "insta/base.html" %}
+{% load material_form %}
+{% block content %}
+
+<div class ="text-center">
+  <h4>New Comment</h4>
+</div>
+<div>
+  <form class='active' method="POST">
+      {% csrf_token %}
+      <fieldset>
+        {% form form=form %}{% endform %}
+        <button type="submit" name="_submit" class="btn">Post</button>
+      </fieldset>
+  </form>
+</div>
+
+{% endblock %}
