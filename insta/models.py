@@ -13,7 +13,7 @@ def get_image_path(instance, filename):
 
 
 class Post(models.Model):
-    photo = models.ImageField(upload_to=get_image_path, null=True, blank=False)
+    photo = models.ImageField(upload_to='images/')
     caption = models.TextField(max_length=2200, null=True, blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
