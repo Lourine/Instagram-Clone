@@ -6,6 +6,8 @@ UpdatePost,DeletePost, ViewProfile,
 CreateComment,DeleteComment,
 LikePostAPI, ViewLikes, ViewNotifications
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -22,3 +24,5 @@ urlpatterns = [
     path('post/<int:pk>/likes/', ViewLikes.as_view(), name='insta-post_likes'),
     path('notifications/', ViewNotifications.as_view(), name='insta-notifications'),
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

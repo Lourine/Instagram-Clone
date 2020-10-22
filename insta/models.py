@@ -29,31 +29,6 @@ class Post(models.Model):
     def get_api_like_url(self):
         return reverse('insta-post_like_api', kwargs={"pk": self.pk})
 
-# Save checks exif information for cellphone photos to see what orientation the
-# photo was taken in, then rotates the image to be upright. images are reduced
-# to a width of 450px, with proportionally reduced height to save room on the
-# server.
-    def save(self, **kwargs):
-        super().save()
-
-        img = Image.open(self.photo.path)
-        exif = img._getexif()
-        orientation_key = 274
-        if exif and orientation_key in exif:
-            orientation = exif[orientation_key]
-
-            rotate_values = {
-                3: Image.ROTATE_180,
-                6: Image.ROTATE_270,
-                8: Image.ROTATE_90
-            }
-
-            if orientation in rotate_values:
-                img = img.transpose(rotate_values[orientation])
-
-        output_size = (450, (img.height / img.width) * 450)
-        img.thumbnail(output_size)
-        img.save(self.photo.path)
 
 
 
@@ -80,3 +55,4 @@ class Notification(models.Model):
     liked = models.BooleanField(default=False, null=True)
     followed = models.BooleanField(default=False, null=True)
     date_posted = models.DateTimeField(null=True, blank=True)
+3

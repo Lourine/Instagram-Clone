@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from .views import FollowUser, ViewFollowers
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 
@@ -25,3 +28,5 @@ urlpatterns = [
     path('user/<str:username>/follow/', FollowUser.as_view(), name='user_follow'),
     path('user/<str:username>/followers/', ViewFollowers.as_view(), name='user_followers'),
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
